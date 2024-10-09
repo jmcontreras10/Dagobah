@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: Dagobah
-  data:
-    mongodb:
-      uri: mongodb://mongo:password@localhost:27017/dagobah
-  devtools:
-    restart:
-      enabled: true
