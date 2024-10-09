@@ -1,0 +1,34 @@
+# This config was automatically generated from your source code
+# Stacks detected: deps:java:.,tool:gradle:
+version: 2.1
+jobs:
+  run-tests:
+    docker:
+      - image: cimg/openjdk:17.0
+    steps:
+      - checkout
+      - run:
+          name: Calculate cache key
+          command: |-
+            find . -name 'gradlew*' -o -name '*.gradle*' | \
+                    sort | xargs cat > /tmp/CIRCLECI_CACHE_KEY
+      - restore_cache:
+          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
+      - run:
+          command: ./gradlew check
+          sonarcloud-scan: true
+      - run:
+          command: ./gradlew build test
+          sonarcloud-scan: true
+      - store_test_results:
+          path: build/test-results
+      - save_cache:
+          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
+          paths:
+            - ~/.gradle/caches
+      - store_artifacts:
+          path: build/reports
+workflows:
+  build-and-test:
+    jobs:
+      - run-tests
