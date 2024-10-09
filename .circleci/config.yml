@@ -69,15 +69,16 @@ jobs:
             docker push "${IMAGE_TAG}"
 
 workflows:
+  version: 2
   build-and-push:
     jobs:
       - run-tests
       - build:
-        requires:
-          - run-tests
-        filters:
-          branches:
-          only: main
+          requires:
+            - run-tests
+          filters:
+            branches:
+              only: main
       - publish:
           requires:
             - build
