@@ -1,0 +1,474 @@
+[
+  {
+    "name": "Push Up",
+    "description": "A basic upper body exercise that works the chest, shoulders, and triceps.",
+    "category": "Strength",
+    "muscularGroup": "Chest",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Squat",
+    "description": "A compound exercise that targets the quadriceps, hamstrings, and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Bench Press",
+    "description": "An upper body exercise that targets the chest, shoulders, and triceps.",
+    "category": "Strength",
+    "muscularGroup": "Chest",
+    "equipment": "Barbell",
+    "location": "Gym"
+  },
+  {
+    "name": "Deadlift",
+    "description": "A compound movement that works the back, glutes, and hamstrings.",
+    "category": "Strength",
+    "muscularGroup": "Full Body",
+    "equipment": "Barbell",
+    "location": "Gym"
+  },
+  {
+    "name": "Pull Up",
+    "description": "An upper body exercise that primarily targets the back and biceps.",
+    "category": "Strength",
+    "muscularGroup": "Back",
+    "equipment": "Pull-up Bar",
+    "location": "Gym"
+  },
+  {
+    "name": "Lunges",
+    "description": "A lower body exercise that targets the quadriceps, hamstrings, and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Plank",
+    "description": "An isometric exercise that strengthens the core and stabilizes the body.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Dumbbell Curl",
+    "description": "An isolation exercise that targets the biceps.",
+    "category": "Strength",
+    "muscularGroup": "Arms",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Tricep Dip",
+    "description": "An exercise that targets the triceps using body weight.",
+    "category": "Strength",
+    "muscularGroup": "Arms",
+    "equipment": "Bench",
+    "location": "Gym"
+  },
+  {
+    "name": "Leg Press",
+    "description": "A compound exercise that targets the quadriceps, hamstrings, and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Leg Press Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Seated Row",
+    "description": "An exercise that targets the back and biceps using a rowing machine.",
+    "category": "Strength",
+    "muscularGroup": "Back",
+    "equipment": "Rowing Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Overhead Press",
+    "description": "An exercise that targets the shoulders and triceps using a barbell.",
+    "category": "Strength",
+    "muscularGroup": "Shoulders",
+    "equipment": "Barbell",
+    "location": "Gym"
+  },
+  {
+    "name": "Russian Twist",
+    "description": "A core exercise that targets the obliques.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Mountain Climbers",
+    "description": "A high-intensity exercise that works the core, legs, and cardiovascular system.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Jumping Jacks",
+    "description": "A full-body aerobic exercise that increases heart rate.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Burpees",
+    "description": "A full-body exercise that combines a squat, push-up, and jump.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Bicycle Crunch",
+    "description": "An abdominal exercise that targets the obliques.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Cable Fly",
+    "description": "An exercise that targets the chest using a cable machine.",
+    "category": "Strength",
+    "muscularGroup": "Chest",
+    "equipment": "Cable Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Leg Extension",
+    "description": "An isolation exercise that targets the quadriceps.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Leg Extension Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Leg Curl",
+    "description": "An isolation exercise that targets the hamstrings.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Leg Curl Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Kettlebell Swing",
+    "description": "A dynamic exercise that targets the glutes and hamstrings.",
+    "category": "Strength",
+    "muscularGroup": "Full Body",
+    "equipment": "Kettlebell",
+    "location": "Gym"
+  },
+  {
+    "name": "Barbell Row",
+    "description": "An exercise that targets the back using a barbell.",
+    "category": "Strength",
+    "muscularGroup": "Back",
+    "equipment": "Barbell",
+    "location": "Gym"
+  },
+  {
+    "name": "Shoulder Press",
+    "description": "An exercise that targets the shoulders using dumbbells.",
+    "category": "Strength",
+    "muscularGroup": "Shoulders",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Hip Thrust",
+    "description": "An exercise that targets the glutes using a barbell.",
+    "category": "Strength",
+    "muscularGroup": "Glutes",
+    "equipment": "Barbell",
+    "location": "Gym"
+  },
+  {
+    "name": "Lateral Raise",
+    "description": "An exercise that targets the shoulders using dumbbells.",
+    "category": "Strength",
+    "muscularGroup": "Shoulders",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Pistol Squat",
+    "description": "A challenging single-leg squat that targets the legs.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Treadmill Run",
+    "description": "A cardiovascular exercise on a treadmill.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "Treadmill",
+    "location": "Gym"
+  },
+  {
+    "name": "Cycling",
+    "description": "A cardiovascular exercise on a stationary bike.",
+    "category": "Cardio",
+    "muscularGroup": "Legs",
+    "equipment": "Stationary Bike",
+    "location": "Gym"
+  },
+  {
+    "name": "Jump Rope",
+    "description": "A full-body cardiovascular exercise using a jump rope.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "Jump Rope",
+    "location": "Gym"
+  },
+  {
+    "name": "Medicine Ball Slams",
+    "description": "A full-body exercise that involves slamming a medicine ball.",
+    "category": "Strength",
+    "muscularGroup": "Full Body",
+    "equipment": "Medicine Ball",
+    "location": "Gym"
+  },
+  {
+    "name": "Box Jump",
+    "description": "A plyometric exercise that targets the legs and improves explosiveness.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Box",
+    "location": "Gym"
+  },
+  {
+    "name": "Wall Sit",
+    "description": "An isometric exercise that targets the quadriceps.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Glute Bridge",
+    "description": "An exercise that targets the glutes and hamstrings.",
+    "category": "Strength",
+    "muscularGroup": "Glutes",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Calf Raise",
+    "description": "An exercise that targets the calves using body weight or weights.",
+    "category": "Strength",
+    "muscularGroup": "Calves",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Lateral Lunges",
+    "description": "A lower body exercise that targets the inner and outer thighs.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Plank Shoulder Taps",
+    "description": "A core exercise that combines planking with shoulder taps for stability.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Box Step Up",
+    "description": "A lower body exercise that targets the quads and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Box",
+    "location": "Gym"
+  },
+  {
+    "name": "T Push Up",
+    "description": "A push-up variation that incorporates a side plank for core stability.",
+    "category": "Strength",
+    "muscularGroup": "Chest",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Single Leg Deadlift",
+    "description": "A balance exercise that targets the hamstrings and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Side Plank",
+    "description": "An isometric exercise that strengthens the obliques.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Bodyweight Squat",
+    "description": "A fundamental movement that targets the legs and glutes.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Reverse Crunch",
+    "description": "An abdominal exercise that targets the lower abs.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Cable Tricep Pushdown",
+    "description": "An exercise that targets the triceps using a cable machine.",
+    "category": "Strength",
+    "muscularGroup": "Arms",
+    "equipment": "Cable Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Dumbbell Shoulder Press",
+    "description": "An exercise that targets the shoulders using dumbbells.",
+    "category": "Strength",
+    "muscularGroup": "Shoulders",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Pike Push Up",
+    "description": "A push-up variation that emphasizes the shoulders.",
+    "category": "Strength",
+    "muscularGroup": "Shoulders",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Dumbbell Chest Press",
+    "description": "An exercise that targets the chest using dumbbells.",
+    "category": "Strength",
+    "muscularGroup": "Chest",
+    "equipment": "Dumbbells",
+    "location": "Gym"
+  },
+  {
+    "name": "Medicine Ball Toss",
+    "description": "An explosive exercise that targets the core and upper body.",
+    "category": "Strength",
+    "muscularGroup": "Full Body",
+    "equipment": "Medicine Ball",
+    "location": "Gym"
+  },
+  {
+    "name": "Yoga Sun Salutation",
+    "description": "A series of yoga poses that promote flexibility and strength.",
+    "category": "Flexibility",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Pilates Hundred",
+    "description": "A classic Pilates exercise that strengthens the core.",
+    "category": "Core",
+    "muscularGroup": "Core",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Sled Push",
+    "description": "A functional strength exercise that works the legs and core.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Sled",
+    "location": "Gym"
+  },
+  {
+    "name": "Kettlebell Goblet Squat",
+    "description": "A squat variation that targets the legs while holding a kettlebell.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Kettlebell",
+    "location": "Gym"
+  },
+  {
+    "name": "Hip Mobility Drill",
+    "description": "A dynamic warm-up exercise that improves hip mobility.",
+    "category": "Flexibility",
+    "muscularGroup": "Legs",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "Bear Crawl",
+    "description": "A full-body exercise that engages the core and improves coordination.",
+    "category": "Core",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Gym"
+  },
+  {
+    "name": "T-Bar Row",
+    "description": "An exercise that targets the back using a T-bar machine.",
+    "category": "Strength",
+    "muscularGroup": "Back",
+    "equipment": "T-Bar Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Agility Ladder Drills",
+    "description": "A drill that improves agility and foot speed.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "Agility Ladder",
+    "location": "Gym"
+  },
+  {
+    "name": "Face Pull",
+    "description": "An exercise that targets the upper back and rear deltoids using a cable.",
+    "category": "Strength",
+    "muscularGroup": "Back",
+    "equipment": "Cable Machine",
+    "location": "Gym"
+  },
+  {
+    "name": "Wall Ball",
+    "description": "An explosive movement that combines a squat with a throw.",
+    "category": "Strength",
+    "muscularGroup": "Legs",
+    "equipment": "Medicine Ball",
+    "location": "Gym"
+  },
+  {
+    "name": "Sprinting",
+    "description": "A high-intensity cardiovascular exercise.",
+    "category": "Cardio",
+    "muscularGroup": "Full Body",
+    "equipment": "None",
+    "location": "Outdoors"
+  },
+  {
+    "name": "Step Aerobics",
+    "description": "A cardiovascular workout that uses an elevated platform.",
+    "category": "Cardio",
+    "muscularGroup": "Legs",
+    "equipment": "Step Platform",
+    "location": "Gym"
+  }
+]
