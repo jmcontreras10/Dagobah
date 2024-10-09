@@ -1,0 +1,14 @@
+services:
+  staging:
+    profiles: [staging]
+    image: DOCKER_IMAGE_NAME_STAGING:latest
+    container_name: DOCKER_CONTAINER_NAME_STAGING
+    restart: unless-stopped
+    volumes:
+      - ./dagobah:/app
+    ports:
+      - "8000:8000"
+      - "80:8000"
+      - "443:8000"
+    environment:
+      - MONDODB_URI=mongodb://mongo:password@localhost:27017/dagobah
