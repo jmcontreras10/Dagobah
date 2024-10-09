@@ -2,6 +2,7 @@ package co.mateocontreras.dagobah.mappers
 
 import co.mateocontreras.dagobah.controllers.dto.ExerciseDto
 import co.mateocontreras.dagobah.repositories.entities.ExerciseEntity
+import co.mateocontreras.dagobah.util.toObjectId
 
 fun ExerciseEntity.toDto(): ExerciseDto {
     this.let {
@@ -20,6 +21,7 @@ fun ExerciseEntity.toDto(): ExerciseDto {
 fun ExerciseDto.toEntity(): ExerciseEntity {
     this.let {
         return ExerciseEntity(
+            id = it.id?.toObjectId(),
             name = it.name,
             description = it.description,
             category = it.category,

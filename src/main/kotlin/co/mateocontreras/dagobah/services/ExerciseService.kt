@@ -4,8 +4,10 @@ import co.mateocontreras.dagobah.controllers.dto.ExerciseDto
 import co.mateocontreras.dagobah.mappers.toDto
 import co.mateocontreras.dagobah.repositories.ExerciseRepository;
 import co.mateocontreras.dagobah.util.toObjectId
+import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class ExerciseService (@Autowired val exerciseRepository: ExerciseRepository) {
