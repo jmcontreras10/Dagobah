@@ -13,7 +13,6 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
-import org.springframework.boot.test.context.SpringBootTest
 import java.util.*
 
 @ExtendWith(MockitoExtension::class)

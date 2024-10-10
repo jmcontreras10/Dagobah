@@ -70,10 +70,10 @@ jobs:
 
   deploy:
     docker:
-      - image: google/cloud-sdk
+      - image: google/cloud-sdk:latest
         auth:
-          username: _json_key
-          password: $GCLOUD_SERVICE_KEY
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
     steps:
       - run: |
           echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
