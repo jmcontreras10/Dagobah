@@ -27,9 +27,6 @@ services:
       - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongo-init:
-    image: node:16-alpine
-    volumes:
-      - ./db:/app/db
-    entrypoint: sh /app/db/mongo-init.sh
+    build: ./db
     depends_on:
       - mongo
