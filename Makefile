@@ -2,7 +2,7 @@ run:
 	./gradlew bootRun
 
 run-dev:
-	./gradlew bootRun --args='--spring.profiles.active=local'
+	./gradlew bootRun --args='--spring.data.mongodb.uri=mongodb://mongo:password@localhost:27018/dagobah'
 
 test:
 	./gradlew build test

@@ -11,7 +11,8 @@ services:
       - "443:8000"
     environment:
       - SPRING_DATASOURCE_URL=mongodb://mongo:password@mongo:27017/dagobah
-      - MONGODB_URI=mongodb://mongo:password@mongo:27017/dagobah
+    links:
+      - mongo
 
   mongo:
     image: mongo:latest
