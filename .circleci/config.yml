@@ -75,35 +75,27 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - checkout
       - run: |
           echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
           gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
 
       - run:
-          name: just testing
-          command: |
-            pwd
-            cd ..
-            ls -l
-            cd ..
-            ls -l
-
-      - run:
-          name: Build docker-compose.yml
+          name: Build docker-compose-template.yml
           command: |
             sed "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" docker-compose-template.yml > docker-compose.yml
             sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" docker-compose.yml
 
       - run:
-          name: SCP docker-compose.yml to GCP instance
+          name: SCP docker-compose-template.yml to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
+            scp -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
 
       - run:
           name: SCP db folder to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no -r db $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/db
+            scp -r ./db $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
 
       - run:
           name: SSH into GCP instance and deploy
