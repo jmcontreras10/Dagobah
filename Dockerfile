@@ -1,8 +1,8 @@
 FROM gradle:7.5.0-jdk17 AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN ls /home/gradle/src/build/libs/
 RUN ./gradlew build --no-daemon
+RUN ls /home/gradle/src/build/libs/
 
 FROM openjdk:24-jdk-slim
 EXPOSE 8000
