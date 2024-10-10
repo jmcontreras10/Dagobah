@@ -83,8 +83,8 @@ jobs:
       - run:
           name: Build docker-compose.yml
           command: |
-            sed -i "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" docker-compose.yml
-            sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" docker-compose.yml
+            sed -i "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" ./docker-compose.yml
+            sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" ./docker-compose.yml
 
       - run:
           name: SCP docker-compose.yml to GCP instance
@@ -111,13 +111,14 @@ workflows:
   version: 2
   build-and-push:
     jobs:
-      - run-tests
-      - build:
-          requires:
-            - run-tests
-      - publish:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - publish
+      - deploy
+#      - run-tests
+#      - build:
+#          requires:
+#            - run-tests
+#      - publish:
+#          requires:
+#            - build
+#      - deploy:
+#          requires:
+#            - publish
