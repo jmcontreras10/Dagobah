@@ -86,7 +86,7 @@ jobs:
               echo "Error: DOCKERHUB_USERNAME is not set."
               exit 1
             fi
-            sed "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" docker-compose-template.yml > docker-compose.yml
+            sed "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah/g" docker-compose-template.yml > docker-compose.yml
             sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" docker-compose.yml
 
       - run:
