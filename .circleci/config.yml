@@ -94,7 +94,7 @@ jobs:
       - run:
           name: SSH into GCP instance and deploy
           command: |
-            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}" << 'EOF'
+            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}" \<< 'EOF'
               docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging down
               docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging build --pull
               docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging up -d
@@ -109,18 +109,9 @@ workflows:
       - build:
           requires:
             - run-tests
-          filters:
-            branches:
-              only: main
       - publish:
           requires:
             - build
-          filters:
-            branches:
-              only: main
       - deploy:
           requires:
             - publish
-          filters:
-            branches:
-              only: main
