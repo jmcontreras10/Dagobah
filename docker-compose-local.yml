@@ -1,14 +1,11 @@
 services:
   dagobah:
     image: jmcontreras20/dagobah:latest
-    container_name: local-dagobah
     restart: unless-stopped
-    volumes:
-      - ./dagobah:/app
     ports:
-      - "8000:8000"
-      - "80:8000"
-      - "443:8000"
+      - "8000:8080"
+      - "80:8080"
+      - "443:8080"
     environment:
       - SPRING_DATASOURCE_URL=mongodb://mongo:password@mongo:27017/dagobah
     links:
