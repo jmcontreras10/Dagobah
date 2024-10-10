@@ -9,4 +9,4 @@ EXPOSE 443
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/Dagobah-0.0.1-SNAPSHOT.jar /app/dagobah.jar
 RUN chmod +x /app/dagobah.jar
-ENTRYPOINT ["java", "-jar", "/app/dagobah.jar", "--spring.data.mongodb.uri=${SPRING_DATASOURCE_URL}"]
+ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-jar", "/app/dagobah.jar", "--spring.data.mongodb.uri=${SPRING_DATASOURCE_URL}"]
