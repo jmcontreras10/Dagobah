@@ -81,6 +81,12 @@ jobs:
           gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
 
       - run:
+          name: just testing
+          command: |
+            pwd
+            ls -l
+
+      - run:
           name: Build docker-compose.yml
           command: |
             sed -i "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" ../docker-compose.yml
