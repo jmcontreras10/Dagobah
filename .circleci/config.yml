@@ -94,7 +94,7 @@ jobs:
       - run:
           name: SCP docker-compose-template.yml to GCP instance
           command: |
-            scp -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
+            scp -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
 
       - run:
           name: SCP db folder to GCP instance
@@ -105,15 +105,10 @@ jobs:
           name: SSH into GCP instance and deploy
           command: |
             ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP \<< 'EOF'
-              # Check if docker-compose.yml exists
-              ls -l /home/$GCE_SSH_USERNAME/docker-compose.yml
-              # Use sudo for Docker commands if necessary
-              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml down
-              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml build --pull
-              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml up -d
-              sudo docker image prune -f
-              # Check if mongo-init.sh exists
-              ls -l /home/$GCE_SSH_USERNAME/db/mongo-init.sh
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
+              docker image prune -f
               sh /home/$GCE_SSH_USERNAME/db/mongo-init.sh
             EOF
 
