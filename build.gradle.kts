@@ -21,8 +21,6 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	//	Web
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
@@ -32,6 +30,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 	testImplementation("org.mockito:mockito-inline:5.2.0")
+	testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.2")
+	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
@@ -41,6 +42,7 @@ kotlin {
 }
 
 tasks.withType<Test> {
+	description = "Runs the API tests"
 	useJUnitPlatform()
 }
 

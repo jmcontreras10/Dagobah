@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const exercises = require("./exercises.json");
 
-const uri = "mongodb://mongo:password@localhost:27018/dagobah";
+const uri = process.argv[2];
 const client = new MongoClient(uri,  {
         serverApi: {
             version: ServerApiVersion.v1,

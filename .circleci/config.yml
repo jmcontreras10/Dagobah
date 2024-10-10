@@ -5,7 +5,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_TAG: ${DOCKERHUB_USERNAME}/dagobah:latest
+      IMAGE_TAG: jmcontreras20/dagobah:latest
     docker:
       - image: docker:stable
 
@@ -69,36 +69,42 @@ jobs:
             docker push "${IMAGE_TAG}"
 
   deploy:
-    executor: docker-publisher
+    docker:
+      - image: google/cloud-sdk
+        auth:
+          username: _json_key
+          password: $GCLOUD_SERVICE_KEY
     steps:
-      - checkout
-      - run:
-          name: Set up gcloud CLI
-          command: |
-            echo "${GCE_SA_KEY}" | base64 --decode > /tmp/gcloud-key.json
-            gcloud auth activate-service-account --key-file=/tmp/gcloud-key.json
-            gcloud config set project "${GCE_PROJECT_ID}"
-            gcloud auth configure-docker
+      - run: |
+          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+          gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
 
       - run:
           name: Build docker-compose.yml
           command: |
-            sed -i "s/DOCKER_IMAGE_NAME/${DOCKERHUB_USERNAME}\/${IMAGE_TAG}/g" docker-compose.yml
-            sed -i "s/DOCKER_CONTAINER_NAME/${DOCKER_CONTAINER_NAME}/g" docker-compose.yml
+            sed -i "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah:latest/g" docker-compose.yml
+            sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" docker-compose.yml
 
       - run:
           name: SCP docker-compose.yml to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}":/home/"${GCE_SSH_USERNAME}"/
+            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
+
+      - run:
+          name: SCP db folder to GCP instance
+          command: |
+            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no -r db $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/db
 
       - run:
           name: SSH into GCP instance and deploy
           command: |
-            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}" \<< 'EOF'
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging down
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging build --pull
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging up -d
+            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP" \<< 'EOF'
+              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml down
+              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml build --pull
+              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml up -d
               docker image prune -f
+              sh /home/$GCE_SSH_USERNAME/db/mongo-init.sh
             EOF
 
 workflows:

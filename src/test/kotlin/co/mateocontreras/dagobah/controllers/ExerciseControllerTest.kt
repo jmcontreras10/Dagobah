@@ -1,21 +1,20 @@
 package co.mateocontreras.dagobah.controllers
 
 import co.mateocontreras.dagobah.builders.dtos.ExerciseDtoBuilder
-import co.mateocontreras.dagobah.builders.entities.ExerciseEntityBuilder
-import co.mateocontreras.dagobah.mappers.toDto
 import co.mateocontreras.dagobah.services.ExerciseService
-import co.mateocontreras.dagobah.util.toObjectId
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
+import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.assertEquals
 
-@SpringBootTest
+@ExtendWith(MockitoExtension::class)
 internal class ExerciseControllerTest {
     @Mock
     lateinit var exerciseService: ExerciseService

@@ -4,10 +4,12 @@ import co.mateocontreras.dagobah.builders.dtos.ExerciseDtoBuilder
 import co.mateocontreras.dagobah.builders.entities.ExerciseEntityBuilder
 import co.mateocontreras.dagobah.util.toObjectId
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.assertEquals
 
-@SpringBootTest
+@ExtendWith(MockitoExtension::class)
 class ExerciseMapperTest {
 
     @Test
