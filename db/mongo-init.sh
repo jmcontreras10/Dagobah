@@ -12,5 +12,5 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 16
 nvm use 16
 nvm alias default 16
-npm install
-node init-mongo-data.js mongodb://mongo:password@localhost:27017/dagobah
+npm --prefix install
+node ./init-mongo-data.js mongodb://mongo:password@localhost:27017/dagobah
