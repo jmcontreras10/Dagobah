@@ -120,9 +120,21 @@ workflows:
       - build:
           requires:
             - run-tests
+          filters:
+            branches:
+              only:
+                - main
       - publish:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - main
       - deploy:
           requires:
             - publish
+          filters:
+            branches:
+              only:
+                - main
