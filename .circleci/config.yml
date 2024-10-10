@@ -5,7 +5,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_TAG: "${DOCKERHUB_USERNAME}/dagobah:latest"
+      IMAGE_TAG: "$jmcontreras20/dagobah:latest"
     docker:
       - image: docker:stable
 
