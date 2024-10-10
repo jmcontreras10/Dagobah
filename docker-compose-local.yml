@@ -1,0 +1,26 @@
+services:
+  dagobah:
+    image: jmcontreras20/dagobah:latest
+    container_name: local-dagobah
+    restart: unless-stopped
+    volumes:
+      - ./dagobah:/app
+    ports:
+      - "8000:8000"
+      - "80:8000"
+      - "443:8000"
+    environment:
+      - SPRING_DATASOURCE_URL=mongodb://mongo:password@mongo:27017/dagobah
+      - MONGODB_URI=mongodb://mongo:password@mongo:27017/dagobah
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: dagobah
+    volumes:
+      - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
