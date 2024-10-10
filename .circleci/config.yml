@@ -105,7 +105,7 @@ jobs:
           name: SSH into GCP instance and deploy
           command: |
             ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP \<< EOF
-              echo "GCE_SSH_USERNAME: $GCE_SSH_USERNAME"
+              sudo usermod -aG docker $GCE_SSH_USERNAME
               docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
               docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
               docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
