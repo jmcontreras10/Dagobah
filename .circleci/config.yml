@@ -100,10 +100,10 @@ jobs:
       - run:
           name: SSH into GCP instance and deploy
           command: |
-            ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP" \<< 'EOF'
-              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml down
-              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml build --pull
-              docker compose -f /home/$GCE_SSH_USERNAME"/docker-compose.yml up -d
+            ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP \<< 'EOF'
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
+              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
               docker image prune -f
               sh /home/$GCE_SSH_USERNAME/db/mongo-init.sh
             EOF
