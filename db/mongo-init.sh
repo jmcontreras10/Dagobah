@@ -13,4 +13,4 @@ nvm install 16
 nvm use 16
 nvm alias default 16
 npm install
-node init-mongo-data.js localhost:27018 mongodb://mongo:password@localhost:27018/dagobah
+node init-mongo-data.js mongodb://mongo:password@localhost:27018/dagobah
