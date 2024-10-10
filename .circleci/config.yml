@@ -108,9 +108,9 @@ jobs:
               # Check if docker-compose.yml exists
               ls -l /home/$GCE_SSH_USERNAME/docker-compose.yml
               # Use sudo for Docker commands if necessary
-              sudo docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
-              sudo docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
-              sudo docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
+              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml down
+              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml build --pull
+              sudo docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml up -d
               sudo docker image prune -f
               # Check if mongo-init.sh exists
               ls -l /home/$GCE_SSH_USERNAME/db/mongo-init.sh
