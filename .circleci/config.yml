@@ -75,7 +75,7 @@ jobs:
       - run:
           name: Set up gcloud CLI
           command: |
-            echo "${GCE_SA_KEY}" | base64 --decode > /tmp/gcloud-key.json
+            echo "${GCE_SA_KEY}" | base64 -d > /tmp/gcloud-key.json
             gcloud auth activate-service-account --key-file=/tmp/gcloud-key.json
             gcloud config set project "${GCE_PROJECT_ID}"
             gcloud auth configure-docker
