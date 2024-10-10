@@ -5,7 +5,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_TAG: jmcontreras20/dagobah:latest
+      IMAGE_TAG: ${DOCKERHUB_USERNAME}/dagobah:latest
     docker:
       - image: docker:stable
 
@@ -68,6 +68,39 @@ jobs:
             echo "${DOCKERHUB_PASS}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
             docker push "${IMAGE_TAG}"
 
+  deploy:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - run:
+          name: Set up gcloud CLI
+          command: |
+            echo "${GCE_SA_KEY}" | base64 --decode > /tmp/gcloud-key.json
+            gcloud auth activate-service-account --key-file=/tmp/gcloud-key.json
+            gcloud config set project "${GCE_PROJECT_ID}"
+            gcloud auth configure-docker
+
+      - run:
+          name: Build docker-compose.yml
+          command: |
+            sed -i "s/DOCKER_IMAGE_NAME/${DOCKERHUB_USERNAME}\/${IMAGE_TAG}/g" docker-compose.yml
+            sed -i "s/DOCKER_CONTAINER_NAME/${DOCKER_CONTAINER_NAME}/g" docker-compose.yml
+
+      - run:
+          name: SCP docker-compose.yml to GCP instance
+          command: |
+            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}":/home/"${GCE_SSH_USERNAME}"/
+
+      - run:
+          name: SSH into GCP instance and deploy
+          command: |
+            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}" << 'EOF'
+              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging down
+              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging build --pull
+              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging up -d
+              docker image prune -f
+            EOF
+
 workflows:
   version: 2
   build-and-push:
@@ -82,6 +115,12 @@ workflows:
       - publish:
           requires:
             - build
+          filters:
+            branches:
+              only: main
+      - deploy:
+          requires:
+            - publish
           filters:
             branches:
               only: main
