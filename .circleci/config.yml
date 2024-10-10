@@ -84,6 +84,9 @@ jobs:
           name: just testing
           command: |
             pwd
+            cd ..
+            ls -l
+            cd ..
             ls -l
 
       - run:
