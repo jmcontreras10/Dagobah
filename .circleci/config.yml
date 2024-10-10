@@ -103,8 +103,6 @@ jobs:
               docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
               docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
               docker image prune -f
-              cd /home/$GCE_SSH_USERNAME/db
-              sh ./mongo-init.sh
             EOF
 
 workflows:
