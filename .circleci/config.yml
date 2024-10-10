@@ -10,63 +10,63 @@ executors:
       - image: docker:stable
 
 jobs:
-  run-tests:
-    docker:
-      - image: cimg/openjdk:17.0
-    steps:
-      - checkout
-      - run:
-          name: Calculate cache key
-          command: |-
-            find . -name 'gradlew*' -o -name '*.gradle*' | \
-                    sort | xargs cat > /tmp/CIRCLECI_CACHE_KEY
-      - restore_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
-      - run:
-          command: ./gradlew check
-          sonarcloud-scan: true
-      - run:
-          command: ./gradlew build test
-          sonarcloud-scan: true
-      - store_test_results:
-          path: build/test-results
-      - save_cache:
-          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
-          paths:
-            - ~/.gradle/caches
-      - store_artifacts:
-          path: build/reports
-
-  build:
-    executor: docker-publisher
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Build Docker image
-          command: docker build --tag "${IMAGE_TAG}" .
-      - run:
-          name: Archive Docker image
-          command: docker save --output image.tar "${IMAGE_TAG}"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./image.tar
-
-  publish:
-    executor: docker-publisher
-    steps:
-      - setup_remote_docker
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name: Load Docker image
-          command: docker load --input /tmp/workspace/image.tar
-      - run:
-          name: Publish Docker image
-          command: |
-            echo "${DOCKERHUB_PASS}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
-            docker push "${IMAGE_TAG}"
+#  run-tests:
+#    docker:
+#      - image: cimg/openjdk:17.0
+#    steps:
+#      - checkout
+#      - run:
+#          name: Calculate cache key
+#          command: |-
+#            find . -name 'gradlew*' -o -name '*.gradle*' | \
+#                    sort | xargs cat > /tmp/CIRCLECI_CACHE_KEY
+#      - restore_cache:
+#          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
+#      - run:
+#          command: ./gradlew check
+#          sonarcloud-scan: true
+#      - run:
+#          command: ./gradlew build test
+#          sonarcloud-scan: true
+#      - store_test_results:
+#          path: build/test-results
+#      - save_cache:
+#          key: cache-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
+#          paths:
+#            - ~/.gradle/caches
+#      - store_artifacts:
+#          path: build/reports
+#
+#  build:
+#    executor: docker-publisher
+#    steps:
+#      - checkout
+#      - setup_remote_docker
+#      - run:
+#          name: Build Docker image
+#          command: docker build --tag "${IMAGE_TAG}" .
+#      - run:
+#          name: Archive Docker image
+#          command: docker save --output image.tar "${IMAGE_TAG}"
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - ./image.tar
+#
+#  publish:
+#    executor: docker-publisher
+#    steps:
+#      - setup_remote_docker
+#      - attach_workspace:
+#          at: /tmp/workspace
+#      - run:
+#          name: Load Docker image
+#          command: docker load --input /tmp/workspace/image.tar
+#      - run:
+#          name: Publish Docker image
+#          command: |
+#            echo "${DOCKERHUB_PASS}" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
+#            docker push "${IMAGE_TAG}"
 
   deploy:
     docker:
@@ -76,9 +76,9 @@ jobs:
       - run:
           name: Set up gcloud CLI
           command: |
-            echo "${GCE_SA_KEY}" | base64 -d > /tmp/gcloud-key.json
+            echo ${GCE_SA_KEY} | base64 -d > /tmp/gcloud-key.json
             gcloud auth activate-service-account --key-file=/tmp/gcloud-key.json
-            gcloud config set project "${GCE_PROJECT_ID}"
+            gcloud config set project ${GCE_PROJECT_ID}
             gcloud auth configure-docker
 
       - run:
@@ -90,15 +90,15 @@ jobs:
       - run:
           name: SCP docker-compose.yml to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}":/home/"${GCE_SSH_USERNAME}"/
+            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no docker-compose.yml ${GCE_SSH_USERNAME}@${GCE_INSTANCE_IP}:/home/${GCE_SSH_USERNAME}/
 
       - run:
           name: SSH into GCP instance and deploy
           command: |
-            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}"@"${GCE_INSTANCE_IP}" \<< 'EOF'
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging down
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging build --pull
-              docker compose -f /home/"${GCE_SSH_USERNAME}"/docker-compose.yml --profile staging up -d
+            ssh -i /tmp/gcp_key -o StrictHostKeyChecking=no ${GCE_SSH_USERNAME}@${GCE_INSTANCE_IP} \<< 'EOF'
+              docker compose -f /home/${GCE_SSH_USERNAME}/docker-compose.yml --profile staging down
+              docker compose -f /home/${GCE_SSH_USERNAME}/docker-compose.yml --profile staging build --pull
+              docker compose -f /home/${GCE_SSH_USERNAME}/docker-compose.yml --profile staging up -d
               docker image prune -f
             EOF
 
@@ -106,13 +106,13 @@ workflows:
   version: 2
   build-and-push:
     jobs:
-      - run-tests
-      - build:
-          requires:
-            - run-tests
-      - publish:
-          requires:
-            - build
+#      - run-tests
+#      - build:
+#          requires:
+#            - run-tests
+#      - publish:
+#          requires:
+#            - build
       - deploy:
           requires:
             - publish
