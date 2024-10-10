@@ -90,12 +90,12 @@ jobs:
       - run:
           name: SCP docker-compose-template.yml to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
+            scp -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME/
 
       - run:
           name: SCP db folder to GCP instance
           command: |
-            scp -i /tmp/gcp_key -o StrictHostKeyChecking=no -r ./db $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
+            scp -o StrictHostKeyChecking=no -r ./db $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
 
       - run:
           name: SSH into GCP instance and deploy
