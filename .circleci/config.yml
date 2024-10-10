@@ -118,14 +118,13 @@ workflows:
   version: 2
   build-and-push:
     jobs:
-      - deploy
-#      - run-tests
-#      - build:
-#          requires:
-#            - run-tests
-#      - publish:
-#          requires:
-#            - build
-#      - deploy:
-#          requires:
-#            - publish
+      - run-tests
+      - build:
+          requires:
+            - run-tests
+      - publish:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - publish

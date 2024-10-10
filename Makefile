@@ -1,8 +1,8 @@
 run:
-	./gradlew run
+	./gradlew bootRun
 
 run-dev:
-	./gradlew run --args='--spring.profiles.active=dev'
+	./gradlew bootRun --args='--spring.profiles.active=local'
 
 test:
 	./gradlew build test
