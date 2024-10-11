@@ -90,7 +90,6 @@ jobs:
           command: |
             scp -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
             cat docker-compose.yml
-            - run:
 
       - run:
           name: SCP db folder to GCP instance
