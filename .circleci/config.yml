@@ -82,10 +82,6 @@ jobs:
       - run:
           name: Build docker-compose-template.yml
           command: |
-            if [ -z "$DOCKERHUB_USERNAME" ]; then
-              echo "Error: DOCKERHUB_USERNAME is not set."
-              exit 1
-            fi
             sed "s/DOCKER_IMAGE_NAME/$DOCKERHUB_USERNAME\/dagobah/g" docker-compose-template.yml > docker-compose.yml
             sed -i "s/DOCKER_CONTAINER_NAME/$DOCKER_CONTAINER_NAME/g" docker-compose.yml
 
@@ -93,15 +89,16 @@ jobs:
           name: SCP docker-compose-template.yml to GCP instance
           command: |
             scp -o StrictHostKeyChecking=no -r ./docker-compose.yml $GCE_SSH_USERNAME@$GCE_INSTANCE_IP:/home/$GCE_SSH_USERNAME
+            cat docker-compose.yml
 
       - run:
           name: SSH into GCP instance and deploy
           command: |
             ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP \<< EOF
               sudo usermod -aG docker $GCE_SSH_USERNAME
-              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
-              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
-              docker compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
+              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
+              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
+              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
               docker image prune -f
             EOF
 

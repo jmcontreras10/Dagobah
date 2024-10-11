@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   dagobah:
-    image: DOCKER_IMAGE_NAME:latest
-    container_name: DOCKER_CONTAINER_NAME
+    image: jmcontreras20/dagobah:latest
     restart: unless-stopped
     ports:
       - "8080:8080"
