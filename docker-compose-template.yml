@@ -26,6 +26,6 @@ services:
   mongo-init:
     build:
       context: ./db
-      dockerfile: ./db/Dockerfile
+      dockerfile: ./Dockerfile
     depends_on:
       - mongo
