@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   dagobah:
     image: jmcontreras20/dagobah:latest
@@ -26,6 +24,8 @@ services:
       - ./db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongo-init:
-    build: ./db
+    build:
+      context: ./db
+      dockerfile: ./db/Dockerfile
     depends_on:
       - mongo
