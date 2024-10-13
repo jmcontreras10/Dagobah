@@ -57,16 +57,16 @@ the exercises and shows their details. CI/CD pipelines for both the backend and 
 - [x] Set up Backend CI/CD pipeline (CircleCI)
 - [x] Deploy backend to Google Cloud Platform (using a virtual machine)
 
-### Mobile UI Setup (Phase 0.3)
+### Android UI Setup (Phase 0.3)
 
-- [ ] Set up mobile app (Kotlin Multiplatform + Jetpack Compose)
-- [ ] List exercises from backend API
-- [ ] Display exercise details
+- [x] Set up Android mobile app (Android Native + Jetpack Compose)
+- [x] List exercises from backend API
+- [x] Display exercise details
 
 ### DevOps V2: CI/CD (UI) and Security (Phase 0.4)
 
-- [ ] Set up UI CI/CD pipeline (CircleCI)
-- [ ] Enable logging and monitoring (e.g., Stackdriver, ELK Stack)
+- [ ] Set up Android UI CI/CD pipeline (CircleCI)
+- [ ] Enable logging and monitoring (e.g., Stackdriver, ELK Stack) [Dagobah]
 - [ ] Implement security measures:
     - Enable SSL
     - CORS configuration
