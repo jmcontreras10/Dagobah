@@ -62,7 +62,6 @@ the exercises and shows their details. CI/CD pipelines for both the backend and 
 - [x] Set up Android mobile app (Android Native + Jetpack Compose)
 - [x] List exercises from backend API
 - [x] Display exercise details
-- [x6] Unit tests for UI components
 
 ### DevOps V2: CI/CD (UI) and Security (Phase 0.4)
 
