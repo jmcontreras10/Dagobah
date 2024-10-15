@@ -102,10 +102,10 @@ jobs:
           command: |
             ssh -o StrictHostKeyChecking=no $GCE_SSH_USERNAME@$GCE_INSTANCE_IP \<< EOF
               sudo usermod -aG docker $GCE_SSH_USERNAME
-              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
-              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
-              docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
-              docker image prune -f
+              sudo docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml down
+              sudo docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml build --pull
+              sudo docker-compose -f /home/$GCE_SSH_USERNAME/docker-compose.yml up -d
+              sudo docker image prune -f
             EOF
 
 workflows:
