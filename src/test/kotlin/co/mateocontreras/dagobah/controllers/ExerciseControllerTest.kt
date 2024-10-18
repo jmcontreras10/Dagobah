@@ -30,7 +30,7 @@ internal class ExerciseControllerTest {
         whenever(exerciseService.getExercises()).thenReturn(exercises)
 
         val response = exerciseController.getExercises()
-        assertEquals(exercises, response)
+        assertEquals(exercises, response.body)
     }
 
 
@@ -43,7 +43,7 @@ internal class ExerciseControllerTest {
             whenever(exerciseService.getExerciseById(id)).thenReturn(exerciseDto)
 
             val response = exerciseController.getExerciseById(id)
-            assertEquals(exerciseDto, response)
+            assertEquals(exerciseDto, response.body)
         }
 
         @Test

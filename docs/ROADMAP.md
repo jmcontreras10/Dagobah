@@ -65,12 +65,9 @@ the exercises and shows their details. CI/CD pipelines for both the backend and 
 
 ### DevOps V2: CI/CD (UI) and Security (Phase 0.4)
 
-- [ ] Set up Android UI CI/CD pipeline (CircleCI)
-- [ ] Enable logging and monitoring (e.g., Stackdriver, ELK Stack) [Dagobah]
-- [ ] Implement security measures:
+- [x] Enable logging and monitoring (e.g., Stackdriver, ELK Stack) [Dagobah]
+- [x] Implement security measures:
     - Enable SSL
-    - CORS configuration
-    - OAuth2 integration (future phase)
 
 ### Phase 0.5 Improvements
 
